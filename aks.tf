@@ -1,7 +1,16 @@
+provider "azurerm" {
+  features {}
+
+  client_id       = "your_client_id_here"
+  client_secret   = "your_client_secret_here"
+  tenant_id       = "your_tenant_id_here"
+  subscription_id = "your_subscription_id_here"
+}
+
 # Define the resource group
 resource "azurerm_resource_group" "aks_qatar_ipay_dev_rg" {
   name     = "aks_qatar_ipay_dev_rg"
-  location = "East US"
+  location = "Qatar"
 }
 
 # Define the virtual network

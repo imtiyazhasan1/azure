@@ -139,6 +139,13 @@ resource "azurerm_application_gateway" "aks_qatar_ipay_dev_app_gateway" {
   }
 }
 
+# Assign AKS Cluster User Role to a user, group, or service principal
+resource "azurerm_role_assignment" "aks_cluster_user_role_assignment" {
+  scope                = azurerm_kubernetes_cluster.aks_qatar_ipay_dev.id
+  role_definition_name = "Azure Kubernetes Service Cluster User Role"
+  principal_id         = "principal_id_here"
+}
+
 # Deploy the Kubernetes dashboard using Helm
 provider "helm" {
   kubernetes {

@@ -1,3 +1,19 @@
+variable "client_id" {
+  type    = string
+}
+
+variable "client_secret" {
+  type    = string
+}
+
+variable "tenant_id" {
+  type    = string
+}
+
+variable "subscription_id" {
+  type    = string
+}
+
 variable "subnet_ids" {
   type    = list(string)
   default = ["subnet_id_1", "subnet_id_2"]

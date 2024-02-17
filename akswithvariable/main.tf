@@ -28,6 +28,40 @@ resource "azurerm_subnet" "aks_qatar_ipay_dev_subnet2" {
   address_prefixes     = ["10.0.2.0/24"]
 }
 
+# Define the security list
+resource "azurerm_network_security_group" "aks_qatar_ipay_dev_nsg" {
+  name                = "aks_qatar_ipay_dev_nsg"
+  location            = azurerm_resource_group.aks_qatar_ipay_dev_rg.location
+  resource_group_name = azurerm_resource_group.aks_qatar_ipay_dev_rg.name
+
+  # Define your security rules here
+  security_rule {
+    name                       = "allow_ssh"
+    priority                   = 100
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "22"
+    source_address_prefix      = azurerm_virtual_network.aks_qatar_ipay_dev_vnet.address_space[0]
+    destination_address_prefix = "*"
+  }
+
+  # Define more security rules if needed
+}
+
+# Associate the security list with the first subnet
+resource "azurerm_subnet_network_security_group_association" "aks_qatar_ipay_dev_nsg_association_subnet1" {
+  subnet_id                 = azurerm_subnet.aks_qatar_ipay_dev_subnet1.id
+  network_security_group_id = azurerm_network_security_group.aks_qatar_ipay_dev_nsg.id
+}
+
+# Associate the security list with the second subnet
+resource "azurerm_subnet_network_security_group_association" "aks_qatar_ipay_dev_nsg_association_subnet2" {
+  subnet_id                 = azurerm_subnet.aks_qatar_ipay_dev_subnet2.id
+  network_security_group_id = azurerm_network_security_group.aks_qatar_ipay_dev_nsg.id
+}
+
 # Define the AKS cluster
 resource "azurerm_kubernetes_cluster" "aks_qatar_ipay_dev" {
   name                = "aks_qatar_ipay_dev"

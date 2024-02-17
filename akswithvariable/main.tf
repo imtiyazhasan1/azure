@@ -1,11 +1,3 @@
-provider "azurerm" {
-  features {}
-  client_id       = var.client_id
-  client_secret   = var.client_secret
-  tenant_id       = var.tenant_id
-  subscription_id = var.subscription_id
-}
-
 # Define the resource group
 resource "azurerm_resource_group" "aks_qatar_ipay_dev_rg" {
   name     = "aks_qatar_ipay_dev_rg"

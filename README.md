@@ -1,4 +1,4 @@
-# VNET Module use
+# VNET Module with aks module to  use
 
 ### example to use -
 ```
@@ -63,5 +63,21 @@ module "firstvnet" {
         priority                   = 102
     }
   }
+}
+
+module "myaks" {
+  source               = "./mod/aks"
+  name                 = "myaks"
+  location             = "westeurope"
+  resource_group       = "myaksrg"
+  kubernetes_version   = "1.27.5"
+  private_enabled      = false
+  network_plugin       = "kubenet"
+  client_id            = ""
+  client_secret        = ""
+  linux_admin_username = "vijay"
+  linux_ssh_key        = file("aks.pub)
+  rbac_enabled         = true
+  cluster_subnet_id    = module.firstvnet.vnet_subnet_id[0] 
 }
 ```

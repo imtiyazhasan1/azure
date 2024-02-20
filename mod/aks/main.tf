@@ -14,6 +14,10 @@ resource "azurerm_kubernetes_cluster" "main" {
   role_based_access_control_enabled = var.rbac_enabled
   sku_tier                          = var.sku
   http_application_routing_enabled  = var.http_application_routing_enabled
+ identity {
+   type = "SystemAssigned"
+ }
+  
   api_server_access_profile {
     authorized_ip_ranges = var.api_server_authorized_ip_ranges
   }
@@ -52,14 +56,6 @@ resource "azurerm_kubernetes_cluster" "main" {
     service_cidr      = var.vnet_service_cidr
     load_balancer_sku = var.network_load_balancer_sku
     pod_cidr          = var.network_plugin == "kubenet" ? var.pod_cidrs : null
-  }
-  service_principal {
-    client_id     = var.client_id
-    client_secret = var.client_secret
-  }
-
-  oms_agent {
-    log_analytics_workspace_id = var.oms_log_analytics_workspace_id
   }
   tags = var.tags
 }

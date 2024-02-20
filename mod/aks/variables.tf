@@ -18,8 +18,9 @@ variable "kubernetes_version" {
   description = "(Required) Version of Kubernetes specified when creating the AKS managed cluster. If not specified, the latest recommended version will be used at provisioning time (but won't auto-upgrade). NOTE: Upgrading your cluster may take up to 10 minutes per node."
 }
 variable "tags" {
-  default = ""
+  default = null
 }
+
 variable "private_enabled" {
   default     = false
   description = "Default kubernetes api type as private or public"
@@ -37,16 +38,6 @@ variable "is_managed_ad" {
   default     = false
   description = "If you want to manage RBAC using AAD/ Entra ID"
 }
-variable "client_id" {
-  type        = string
-  description = "client_id - (Required) The Client ID for the Service Principal."
-}
-
-variable "client_secret" {
-  type        = string
-  description = "(Required) The Client Secret for the Service Principal."
-}
-
 variable "node_resource_group" {
   type        = string
   description = "(Optional) The name of the Resource Group where the Kubernetes Nodes should exist. Changing this forces a new resource to be created. If empty, this module will generate a friendly name"

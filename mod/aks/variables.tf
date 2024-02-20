@@ -52,7 +52,7 @@ variable "node_public_ip_enable" {
 
 variable "dns_prefix" {
   type        = string
-  description = "(Optional) DNS prefix to append to the cluster. Default: cloudcommons"
+  description = "(Optional) DNS prefix to append to the cluster. Default: mevijay"
   default     = "mevijay"
 }
 
@@ -167,8 +167,8 @@ variable "rbac_aad_tenant_id" {
 
 variable "linux_admin_username" {
   type        = string
-  description = "(Optional) The Admin Username for the Cluster. Changing this forces a new resource to be created. Defaults to cloudcommons"
-  default     = "cloudcommons"
+  description = "(Optional) The Admin Username for the Cluster. Changing this forces a new resource to be created. Defaults to vijay"
+  default     = "vijay"
 }
 
 variable "linux_ssh_key" {

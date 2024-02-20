@@ -71,13 +71,12 @@ module "myaks" {
   location             = "westeurope"
   resource_group       = "myaksrg"
   kubernetes_version   = "1.27.5"
+  node_pool_vm_size    = "Standard_DS3_v2"
   private_enabled      = false
   network_plugin       = "kubenet"
-  client_id            = ""
-  client_secret        = ""
   linux_admin_username = "vijay"
-  linux_ssh_key        = file("aks.pub)
-  rbac_enabled         = true
-  cluster_subnet_id    = module.firstvnet.vnet_subnet_id[0] 
+  linux_ssh_key        = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC5QqtH1y7NC/jJ8pOGzeQ90n8XuESQ+JMQovkhS/CFdGeh2Il0KDgFWvbxrkVUlnPEHCSTKEm92jLXfhlzGxX/5KSgkzRAgOQpsCP29nvjcFMVoyErcVen0KrQmhf7njg92lQIEyymNGNhd8b5gONXxHd0PpsOMT5wtvt9CZoN8aJu32+JT844xljp9tyirgptyJQdcjqb/rNKPh5vrRcPF4gRcQEMXRtLiXJfZ6Mg67/rLYO6oDrZSApG5oyS+JZx/g/mEuGeeVkOF+Ivc8Iq0AiWewJrjb/8e93lH14x5LaURkhZmRKIQfk7Fg5BRzIgboJBf8MvEDsBoftaOx2r vijay@virus"
+  rbac_enabled         = false
+  cluster_subnet_id    = module.firstvnet.vnet_subnet_id[0]
 }
 ```

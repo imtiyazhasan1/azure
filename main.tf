@@ -68,6 +68,7 @@ module "myaks" {
   location             = "westeurope"
   resource_group       = "myaksrg"
   kubernetes_version   = "1.27.5"
+  node_pool_vm_size    = "Standard_DS3_v2"
   private_enabled      = false
   network_plugin       = "kubenet"
   linux_admin_username = "vijay"
